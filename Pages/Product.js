@@ -4,7 +4,7 @@ import AppHeader from '../componets/AppHeader/AppHeader';
 import constants from '../Constants/Constants'
 import { View, Image, StyleSheet, Text, FlatList } from 'react-native';
 
-const DATA = [
+const DATA = [  
     {
         id: '1',
         title: 'Weekend',
@@ -84,6 +84,7 @@ const styles = StyleSheet.create({
     },
     text: {
         fontSize: 15,
+        
     },
     scrollStyle: {
         // height: 30,
@@ -101,7 +102,7 @@ const styles = StyleSheet.create({
         padding: 5,
         height:350,
         width: '50%',
-        elevation: 10,
+        elevation: 3,
         // backgroundColor: '#c7d1c9',
         // marginBottom: 10,
         borderRadius: 10,

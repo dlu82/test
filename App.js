@@ -7,6 +7,8 @@ import Intro from './Pages/Intro'
 import Login from './Pages/Login'
 import Signin from './Pages/signin'
 import Product from './Pages/Product'
+import CoffeePage from './Pages/CoffeePage'
+import ProductHeader from "./componets/ProductHeader/ProductHeader";
 
 const Stack = createStackNavigator();
 
@@ -14,7 +16,7 @@ function MyStack()  {
     
 
     return(
-    <Product/>
+    <CoffeePage/>
     
       // <Stack.Navigator>
       //   <Stack.Screen name="Intro" component={Intro}  options={{ title: false }}/>

@@ -208,7 +208,7 @@ const sampleData = [
 ];
 
 const samplApi=[
-  [
+  
     {
       "title": "Black",
       "description": "Black coffee is as simple as it gets with ground coffee beans steeped in hot water, served warm. And if you want to sound fancy, you can call black coffee by its proper name: cafe noir.",
@@ -236,7 +236,7 @@ const samplApi=[
         "Steamed Milk",
         "Foam"
       ],
-      "image": "https://commons.wikimedia.org/wiki/File:Wet_Cappuccino_with_heart_latte_art.jpg#/media/File:Wet_Cappuccino_with_heart_latte_art.jpg",
+      "image": "https://femina.wwmindia.com/content/2020/nov/smvegancappuccino1604596321.jpg",
       "id": 3
     },
     {
@@ -410,10 +410,10 @@ const samplApi=[
         "Panela",
         "Traditional"
       ],
-      "image": "https://commons.wikimedia.org/wiki/File:Agua_Panela_con_Queso_Fresco_at_La_Puerta_Falsa_(5617496209).jpg#/media/File:Agua_Panela_con_Queso_Fresco_at_La_Puerta_Falsa_(5617496209).jpg",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/a/a1/Agua_Panela_con_Queso_Fresco_at_La_Puerta_Falsa_%285617496209%29.jpg",
       "id": 20
     }
-  ]
+  
 ];
 
 const constants={sampleData,samplApi}

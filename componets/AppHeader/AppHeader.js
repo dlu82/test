@@ -7,17 +7,27 @@ import {
   ScrollView,
 } from 'react-native';
 import React from 'react';
+
+
 import SafeAreaWrapper from '../SafeAreaWrapper/SafeAreaWrapper';
 import {useNavigation} from '@react-navigation/native';
 
-const AppHeader = ({isBack, Head, subHead, tapIn}) => {
+const AppHeader = ({isBack, Head, subHead, tapIn, isImage}) => {
   const navigation = useNavigation();
   return (
-    <View >
+    <View>
       <View style={styles.Head}>
         {isBack && (
           <Pressable onPress={() => navigation.goBack()}>
-            <Text>Back</Text>
+            {isImage ? (
+              <Image
+                style={{width: 40, height: 38}}
+                source={
+                  require('../../assets/grid.png')}
+              />
+            ) : (
+              <Text>Back</Text>
+            )}
           </Pressable>
         )}
 
