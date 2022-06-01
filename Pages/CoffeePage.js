@@ -3,6 +3,7 @@ import React from 'react';
 import SafeAreaWrapper from '../componets/SafeAreaWrapper/SafeAreaWrapper';
 import AppHeader from '../componets/AppHeader/AppHeader';
 import constants from '../Constants/Constants';
+import ProductHeader from '../componets/ProductHeader/ProductHeader';
 
 import {
   View,
@@ -102,21 +103,7 @@ const CoffeePage = () => {
 
   return (
     <SafeAreaWrapper>
-      <View style={styles.header}>
-        <Image
-          style={{width: 35, height: 35, tintColor: 'grey'}}
-          source={require('../assets/grid.png')}
-        />
-        <View style={styles.CartStyle}>
-          <Image
-            style={{width: 25, height: 25, tintColor: 'grey',marginRight: 12}}
-            source={require('../assets/bag.png')}
-          />
-          <View style={styles.Text2}>
-            <Text style={{}}>2</Text>
-            </View>
-        </View>
-      </View>
+      <ProductHeader />
       <View style={styles.Search}>
         <Image
           style={{
@@ -152,10 +139,6 @@ const CoffeePage = () => {
 export default CoffeePage;
 
 const styles = StyleSheet.create({
-  header: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
   Search: {
     height: 50,
     flexDirection: 'row',
@@ -176,24 +159,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  CartStyle: {
-    flexDirection: 'row',
-    borderColor: 'grey',
-    borderWidth: 1,
-    borderRadius: 20,
-    padding: 5,
-    alignItems: 'center'
-  },
-  Text2: {
-    backgroundColor: '#9c1485',
-    borderRadius: 15,
-    width: 30,
-    height: 30,
-    alignItems: 'center',
-    justifyContent: 'center'
-
-  },
-
   prdctImg: {
     // width: 160,
     height: 260,
