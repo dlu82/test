@@ -4,8 +4,11 @@ import {View, Text, StyleSheet} from 'react-native';
 import ButtonComponent from '../componets/ButtonComponent/ButtonComponent';
 import SafeAreaWrapper from '../componets/SafeAreaWrapper/SafeAreaWrapper';
 import TextInputComponents from '../componets/TextInputComponents/TextInputComponents';
+import { NavigationContainer, useNavigation } from '@react-navigation/native';
 
 const Login = () => {
+  const navigation = useNavigation();
+
   return (
     <SafeAreaWrapper>
       <View style={styles.container}>
@@ -16,7 +19,7 @@ const Login = () => {
         <ButtonComponent
           label={'login'}
           tapOn={() => {
-            alert('You tapped the Login button!');
+            navigation.navigate('CoffeePage');
             
           }}
           btnStyle={{backgroundColor: '#f75276'}}
@@ -27,7 +30,7 @@ const Login = () => {
         <ButtonComponent
           label={'Login with Facebook'}
           tapOn={() => {
-            alert('You tapped the Login button!');
+            navigation.navigate('CoffeePage')
           }}
           btnStyle={{backgroundColor: '#619cfa'}}
         />

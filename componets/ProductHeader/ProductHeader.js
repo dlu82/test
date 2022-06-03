@@ -1,22 +1,68 @@
+import {NavigationContainer, useNavigation} from '@react-navigation/native';
 import React from 'react';
 
-import {View, StyleSheet, Text, Image, ImageBackground} from 'react-native';
+import {
+  View,
+  StyleSheet,
+  Text,
+  Image,
+  ImageBackground,
+  Pressable,
+} from 'react-native';
 
-const ProductHeader = ({headerStyle, Text2, gridImage, cartStyle, CentrText }) => {
+const ProductHeader = ({
+  headerStyle,
+  Text2,
+  gridImage,
+  cartStyle,
+  CentrText,
+  Cartno,
+  isBack,
+  TextStyle,
+}) => {
+  const navigation = useNavigation();
+
   return (
-    <View style={{...styles.header,...headerStyle}} >
-      <Image
-        style={{width: 35, height: 35, tintColor: 'grey',...gridImage}}
-        source={require('../../assets/grid.png')}
-      />
-      <Text style={{}}>{CentrText}</Text>
-      <View style={{...styles.CartStyle,...cartStyle}}>
+    <View style={{...styles.header, ...headerStyle}}>
+      {isBack ? (
+        <Pressable
+          onPress={() => {
+            navigation.goBack();
+          }}>
+          <Image
+            style={{
+              width: 35,
+              height: 35,
+              tintColor: 'grey',
+              transform: [{rotate: '180deg'}],
+              ...gridImage,
+            }}
+            source={require('../../assets/right-arrow.png')}
+          />
+        </Pressable>
+      ) : (
+        <Pressable>
+          <Image
+            style={{width: 35, height: 35, tintColor: 'grey', ...gridImage}}
+            source={require('../../assets/grid.png')}
+          />
+        </Pressable>
+      )}
+
+      <Text style={{...styles.TextStyle, ...TextStyle}}>{CentrText}</Text>
+      <View style={{...styles.CartStyle, ...cartStyle}}>
         <Image
-          style={{width: 25, height: 25, tintColor: 'grey', marginRight: 12,...gridImage}}
+          style={{
+            width: 25,
+            height: 25,
+            tintColor: 'grey',
+            marginRight: 12,
+            ...gridImage,
+          }}
           source={require('../../assets/bag.png')}
         />
-        <View style={{...styles.Text2,...Text2}}>
-          <Text style={{}}>{Text2}</Text>
+        <View style={{...styles.Text2, ...Text2}}>
+          <Text style={{}}>{Cartno}</Text>
         </View>
       </View>
     </View>
@@ -44,5 +90,10 @@ const styles = StyleSheet.create({
     height: 30,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  TextStyle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: 'grey',
   },
 });

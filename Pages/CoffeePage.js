@@ -4,21 +4,17 @@ import SafeAreaWrapper from '../componets/SafeAreaWrapper/SafeAreaWrapper';
 import AppHeader from '../componets/AppHeader/AppHeader';
 import constants from '../Constants/Constants';
 import ProductHeader from '../componets/ProductHeader/ProductHeader';
+import { useNavigation } from '@react-navigation/native';
 
 import {
-  View,
-  StyleSheet,
-  Image,
-  TextInput,
-  Text,
-  FlatList,
-  ImageBackground,
+  View,  StyleSheet, Image, TextInput, Text, FlatList, ImageBackground, Pressable
 } from 'react-native';
 
 const DATA = [
   {
     id: '1',
     title: 'Sort',
+    selected: true
   },
   {
     id: '2',
@@ -43,14 +39,25 @@ const DATA = [
 ];
 
 const CoffeePage = () => {
+  const navigation = useNavigation();
+
   const renderItem = ({item}) => (
+    <Pressable 
+    onPress={()=> {
+      navigation.navigate('OneProduct')
+    }}>
     <View style={styles.scrollStyle}>
       <Text style={{fontSize: 12}}>{item.title}</Text>
     </View>
+    </Pressable>
   );
 
   const listedPrdcts = ({item}) => (
-    <View style={styles.Product}>
+    <Pressable style={styles.Product}
+    onPress={()=>{
+      navigation.navigate('OneProduct')
+    }}>
+    
       <ImageBackground
         borderRadius={20}
         style={{height: 260}}
@@ -98,12 +105,15 @@ const CoffeePage = () => {
         {item.description}
       </Text> */}
       {/* <Text style={{ color:'black',fontSize: 13,fontWeight: 'bold',padding:10}}>rating: {item.rating.rate} *</Text> */}
-    </View>
+  
+
+    </Pressable>
   );
 
   return (
-    <SafeAreaWrapper>
-      <ProductHeader />
+    <View style={{flex:1}}>
+      <View style={{paddingHorizontal: 20,paddingTop: 20}}>
+      <ProductHeader Text2={{backgroundColor: '#cbc8cc'}} Cartno={'4'}/>
       <View style={styles.Search}>
         <Image
           style={{
@@ -117,22 +127,23 @@ const CoffeePage = () => {
         />
         <TextInput placeholder="Search" />
       </View>
+      </View>
       <FlatList
-        style={{marginTop: 20, height: 60}}
+        style={{marginTop: 20, height: 60, paddingLeft: 20}}
         showsHorizontalScrollIndicator={false}
         horizontal
         data={DATA}
         renderItem={renderItem}
       />
       <FlatList
-        style={{marginTop: 10}}
-        showsVerticalScrollIndicator={false}
+        style={{marginTop: 10, paddingHorizontal: 20,}}
+        contentContainerStyle={{paddingBottom: 30}}
         bounces={false}
         numColumns={2}
         data={constants.samplApi}
         renderItem={listedPrdcts}
       />
-    </SafeAreaWrapper>
+      </View>
   );
 };
 
@@ -144,7 +155,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     backgroundColor: '#d8e6e5',
     borderRadius: 10,
-    // margin: 5,
     padding: 5,
     marginTop: 20,
   },
@@ -166,8 +176,9 @@ const styles = StyleSheet.create({
   },
 
   Product: {
-    height: 350,
+    // height: 350,
     width: '48%',
     marginRight: 10,
+    paddingVertical: 20
   },
 });

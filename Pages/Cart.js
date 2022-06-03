@@ -1,8 +1,8 @@
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 
-import {View, StyleSheet, Image, Text, ScrollView} from 'react-native';
+import {View, StyleSheet, Image, Text, ScrollView, Pressable} from 'react-native';
 import {FlatList} from 'react-native-gesture-handler';
-import Pressable from 'react-native/Libraries/Components/Pressable/Pressable';
 import ProductHeader from '../componets/ProductHeader/ProductHeader';
 
 const cartData = [
@@ -37,15 +37,20 @@ const cartData = [
 ];
 
 const Cart = ({}) => {
+  const navigation = useNavigation();
   return (
     <View style={Styles.container}>
       <ProductHeader
-      Text2={4}
+      Cartno={4}
+      Text2={{backgroundColor: '#cbc8cc'}}
+      cartStyle={{marginBottom: 15}}
         headerStyle={{
+          height: 60,
           paddingHorizontal: 20,
           paddingTop: 10,
           backgroundColor: 'lightblue',
         }}
+        isBack
         CentrText={'Shopping Cart'}
       />
       <ScrollView>
@@ -151,7 +156,10 @@ const Cart = ({}) => {
             <Text style={{fontSize: 15,fontWeight: 'bold', color: 'black'}}>$2035</Text>
           </View>
         </View>
-        <Pressable style={Styles.Button}>
+        <Pressable style={Styles.Button} 
+        onPress={() => {
+          alert('CheckingOut')
+        }}>
             <Text style={Styles.text}>CHECKOUT</Text>
         </Pressable>
       </ScrollView>

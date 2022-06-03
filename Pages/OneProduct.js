@@ -1,9 +1,13 @@
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 
-import {View, StyleSheet, ImageBackground, Text, Image} from 'react-native';
+import {
+  View, StyleSheet, ImageBackground, Text, Image, Pressable
+}from 'react-native';
 import ProductHeader from '../componets/ProductHeader/ProductHeader';
 
 const OneProduct = () => {
+  const navigation = useNavigation();
   return (
     <ImageBackground
       style={{height: '100%', width: '100%'}}
@@ -11,8 +15,10 @@ const OneProduct = () => {
       <ProductHeader
         headerStyle={{paddingHorizontal: 20, paddingTop: 50}}
         Text2={{backgroundColor: 'white'}}
+        Cartno={'4'}
         gridImage={{tintColor: 'white'}}
         cartStyle={{borderColor: 'white', borderWidth: 2}}
+        isBack
       />
       <View style={styles.heartLogo}>
         <Image
@@ -70,7 +76,10 @@ const OneProduct = () => {
           <Text style={styles.itemTitle}>Thermal{'\n'}Cup</Text>
           <Text style={styles.itemTitle}>$15</Text>
         </View>
-        <View style={styles.addButtn}>
+          <Pressable style={styles.addButtn}
+          onPress={()=>{
+            navigation.navigate('Cart')
+          }}>
           <Text style={{color: 'white', fontSize: 15, padding: 10}}>Add</Text>
           <Image
             source={require('../assets/right-arrow.png')}
@@ -81,8 +90,10 @@ const OneProduct = () => {
             }}
             resizeMode="contain"
           />
-        </View>
+
+      </Pressable>
       </View>
+
     </ImageBackground>
   );
 };
