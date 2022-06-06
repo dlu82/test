@@ -41,6 +41,8 @@ const Cart = ({}) => {
   return (
     <View style={Styles.container}>
       <ProductHeader
+      backButton={true}
+      isHeart={true}
       Cartno={4}
       Text2={{backgroundColor: '#cbc8cc'}}
       cartStyle={{marginBottom: 15}}
@@ -88,7 +90,7 @@ const Cart = ({}) => {
                   </View>
                   <View>
                     <Text style={{fontSize: 17, color: 'black'}}>
-                      {item.title}{' '}
+                      {item.title}
                     </Text>
                     <View
                       style={{

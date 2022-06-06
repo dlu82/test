@@ -19,6 +19,9 @@ const ProductHeader = ({
   Cartno,
   isBack,
   TextStyle,
+  isHeart,
+  Heart,
+  backButton
 }) => {
   const navigation = useNavigation();
 
@@ -34,10 +37,10 @@ const ProductHeader = ({
               width: 35,
               height: 35,
               tintColor: 'grey',
-              transform: [{rotate: '180deg'}],
-              ...gridImage,
+              // transform: [{rotate: '180deg'}],
+              ...backButton,
             }}
-            source={require('../../assets/right-arrow.png')}
+            source={require('../../assets/back.png')}
           />
         </Pressable>
       ) : (
@@ -50,7 +53,8 @@ const ProductHeader = ({
       )}
 
       <Text style={{...styles.TextStyle, ...TextStyle}}>{CentrText}</Text>
-      <View style={{...styles.CartStyle, ...cartStyle}}>
+      {isHeart ? (
+        <View style={{...styles.CartStyle, ...cartStyle}}>
         <Image
           style={{
             width: 25,
@@ -65,6 +69,18 @@ const ProductHeader = ({
           <Text style={{}}>{Cartno}</Text>
         </View>
       </View>
+      ) : (
+        <Image
+          style={{
+            width: 30,
+            height: 30,
+            marginRight: 12,
+            ...Heart,
+          }}
+          source={require('../../assets/colour-heart.png')}
+        />
+      )}
+      
     </View>
   );
 };

@@ -19,7 +19,7 @@ const Login = () => {
         <ButtonComponent
           label={'login'}
           tapOn={() => {
-            navigation.navigate('CoffeePage');
+            navigation.navigate('HomePage');
             
           }}
           btnStyle={{backgroundColor: '#f75276'}}

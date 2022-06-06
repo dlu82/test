@@ -1,7 +1,16 @@
 import {useNavigation} from '@react-navigation/native';
 import React from 'react';
 
-import {View, StyleSheet, Text, Image, TextInput, FlatList} from 'react-native';
+import {
+  View,
+  StyleSheet,
+  Text,
+  Image,
+  TextInput,
+  FlatList,
+  ImageBackground,
+  Pressable,
+} from 'react-native';
 
 const DATA = [
   {
@@ -41,7 +50,7 @@ const FURNITURE = [
   },
   {
     id: '2',
-    title: 'Malik CHair',
+    title: 'Malik Chair',
     brand: 'by Karjo',
     description: 'Comfy Chair',
     imageURL: require('../assets/CHair/1.jpeg'),
@@ -66,8 +75,8 @@ const HomePage = () => {
   const navigation = useNavigation();
 
   const renderItem = ({item}) => (
-    <View style={styles.VerticalData}>
-      <Text style={{fontSize: 19, color: '#635a6e'}}>{item.title}</Text>
+    <View style={styles.VerticalData(item.selected)}>
+      <Text style={styles.VerticaldataText(item.selected)}>{item.title}</Text>
     </View>
   );
 
@@ -120,52 +129,80 @@ const HomePage = () => {
           renderItem={renderItem}
         />
       </View>
-
-      <View style={styles.Products}>
-        <FlatList
-          data={FURNITURE}
-          renderItem={({item,}) => {
-            return (
-              <View
-                style={{
-                  flexDirection: 'row',
-                  justifyContent: 'space-between',
-                  paddingHorizontal: 20,
-                  paddingVertical: 15,
-                }}>
-                <View>
-                  
-                  <Image
-                    style={{
-                      height: 100,
-                      width: 100,
-                      borderRadius: 10,
-                      // marginTop: 15,
-                    }}
-                    source={item.imageURL}
-                  />
-                </View>
-                <View>
-                  <Text style={{fontSize: 17, color: 'black'}}>
-                    {item.title}
-                  </Text>
-                  <View
-                    style={{
-                      justifyContent: 'space-between',
-                      paddingVertical: 20,
-                      width: '50%',
-                    }}>
-                    <Text style={{fontSize: 20, width: 75}}>{item.brand}</Text>
-                    <View>
-                      <Text>{item.description}</Text>
+      <Pressable
+        onPress={() => {
+          navigation.navigate('ItemPage');
+        }}>
+        <View style={styles.Product}>
+          <FlatList
+            data={FURNITURE}
+            renderItem={({item}) => {
+              return (
+                <View
+                  style={{
+                    flexDirection: 'row',
+                    backgroundColor: 'white',
+                    // justifyContent: 'space-between',
+                    paddingHorizontal: 20,
+                    paddingVertical: 15,
+                    borderRadius: 20,
+                    marginBottom: 20,
+                  }}>
+                  <View>
+                    <ImageBackground
+                      borderRadius={15}
+                      style={{
+                        height: 140,
+                        width: 140,
+                        marginTop: 15,
+                      }}
+                      source={item.imageURL}>
+                      <Image />
+                    </ImageBackground>
+                  </View>
+                  <View style={{marginLeft: 20}}>
+                    <Text
+                      style={{
+                        fontSize: 20,
+                        color: '#403b58',
+                        fontWeight: 'bold',
+                      }}>
+                      {item.title}
+                    </Text>
+                    <View
+                      style={{
+                        paddingVertical: 20,
+                        width: '50%',
+                      }}>
+                      <Text
+                        style={{fontSize: 17, width: 100, color: '#403b58'}}>
+                        {item.brand}
+                      </Text>
+                      <View>
+                        <Text
+                          numberOfLines={2}
+                          style={{fontSize: 17, width: 200, color: '#403b58'}}>
+                          {item.description}
+                        </Text>
+                      </View>
+                    </View>
+                    <View style={{flexDirection: 'row'}}>
+                      <Text style={{color: '#403b58'}}>$102.00</Text>
+                      <Pressable
+                        style={styles.Button}
+                        onPress={() => {
+                          navigation.navigate('cart');
+                        }}>
+                        <Text style={styles.text}>Buy</Text>
+                      </Pressable>
                     </View>
                   </View>
                 </View>
-              </View>
-            );
-          }}
-        />
-      </View>
+              );
+            }}
+          />
+        </View>
+      </Pressable>
     </View>
   );
 };
@@ -196,16 +233,39 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  VerticalData: {
+  VerticalData: selected => ({
     height: 40,
     width: 70,
     alignItems: 'center',
     justifyContent: 'center',
-  },
+    backgroundColor: selected ? '#403b58' : '#ebebeb',
+    borderRadius: 20,
+    marginTop: 10,
+  }),
+  VerticaldataText: selected => ({
+    fontSize: 18,
+    color: selected ? 'white' : '#635a6e',
+  }),
   Product: {
-    // height: 350,
-    // width: '50%',
+    height: 500,
+    width: '90%',
+    marginLeft: 20,
     marginRight: 10,
-    paddingVertical: 20
+    paddingVertical: 30,
+    paddingBottom: 60,
+  },
+  Button: {
+    backgroundColor: '#403b58',
+    height: 26,
+    width: 60,
+    marginHorizontal: 30,
+    borderRadius: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  text: {
+    fontSize: 15,
+    color: 'white',
+    fontWeight: 'bold',
   },
 });
